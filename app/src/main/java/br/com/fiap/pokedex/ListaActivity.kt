@@ -1,5 +1,6 @@
 package br.com.fiap.pokedex
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -15,7 +16,11 @@ class ListaActivity : AppCompatActivity() {
 
         rvPokemons.adapter = ListaPokemonAdapter(getPokemons(),
                 this, {
-            Toast.makeText(this, it.nome, Toast.LENGTH_LONG).show()
+            val telaDetalhe = Intent(this,
+                    DetalheActivity::class.java)
+
+            telaDetalhe.putExtra("POKEMON", it)
+            startActivity(telaDetalhe)
         })
 
         rvPokemons.layoutManager = LinearLayoutManager(this)
