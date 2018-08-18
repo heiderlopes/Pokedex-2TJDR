@@ -7,7 +7,9 @@ import android.support.v7.widget.RecyclerView.Adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import br.com.fiap.pokedex.api.getPicassoAuth
 import br.com.fiap.pokedex.model.Pokemon
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.pokemon_item.view.*
 
 class ListaPokemonAdapter(private val pokemons: List<Pokemon>,
@@ -35,10 +37,16 @@ class ListaPokemonAdapter(private val pokemons: List<Pokemon>,
         fun bindView(pokemon: Pokemon,
                      listener: (Pokemon) -> Unit) = with(itemView) {
 
-            ivPokemon.setImageDrawable(ContextCompat.getDrawable(context, pokemon.resourceId))
+            //ivPokemon.setImageDrawable(ContextCompat.getDrawable(context, pokemon.resourceId))
             tvNomePokemon.text = pokemon.nome
-            tvTipoPokemon.text = pokemon.tipo
-            tvDescricaoPokemon.text = pokemon.descricao
+            tvNumero.text = pokemon.numero
+
+            getPicassoAuth(itemView.context)
+                    .load("https://pokedexdx.herokuapp.com${pokemon.urlImagem}")
+                    .error(R.drawable.notfound)
+                    .placeholder(R.drawable.pokebola)
+                    .into(ivPokemon);
+
             setOnClickListener { listener(pokemon) }
         }
     }

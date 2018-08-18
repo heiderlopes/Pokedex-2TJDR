@@ -2,28 +2,23 @@ package br.com.fiap.pokedex.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 
 data class Pokemon(
-        val numero: Int,
-        val nome: String,
-        val tipo: String,
-        val descricao:String,
-        val resourceId: Int
+        @SerializedName("number") val numero: String,
+        @SerializedName("name") val nome: String,
+        @SerializedName("imageURL") val urlImagem: String
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
-            parcel.readInt(),
             parcel.readString(),
             parcel.readString(),
-            parcel.readString(),
-            parcel.readInt()) {
+            parcel.readString()) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(numero)
+        parcel.writeString(numero)
         parcel.writeString(nome)
-        parcel.writeString(tipo)
-        parcel.writeString(descricao)
-        parcel.writeInt(resourceId)
+        parcel.writeString(urlImagem)
     }
 
     override fun describeContents(): Int {

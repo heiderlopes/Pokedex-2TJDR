@@ -33,17 +33,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvTipoPokemon"
+                android:id="@+id/tvNumero"
                 android:textColor="#CCC"
                 android:textSize="10sp"
                 android:text="Psy"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvDescricaoPokemon"
-                android:text="bla bla bla"
-                android:maxLines="3"/>
         </LinearLayout>
 
     </LinearLayout>
